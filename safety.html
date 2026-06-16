@@ -73,10 +73,42 @@
         .modal-content { background: white; padding: 28px; border-radius: 16px; max-width: 450px; width: 100%; position: relative; }
         .close { position: absolute; top: 12px; right: 16px; font-size: 24px; cursor: pointer; }
         @media (max-width: 768px) { nav { display: none; } .btn-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 768px) {
+    nav { display: none !important; } /* Прячем меню для ПК */
+    .burger-menu { display: block !important; } /* Показываем иконку бургера */
+}
+
     </style>
 </head>
 <body>
 <div class="container">
+    <header style="position: relative; background: white; padding: 15px 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05);">
+    <div style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto;">
+        <!-- Логотип -->
+        <div class="logo-block"><strong>МБОУ СОШ с. Старобаширово</strong></div>
+        
+        <!-- Обычное меню для ПК -->
+        <nav>
+            <a href="index.html" style="margin-left: 20px; text-decoration: none; color: #4A5568;">Главная</a>
+            <a href="about.html" style="margin-left: 20px; text-decoration: none; color: #4A5568;">Сведения об ОО</a>
+            <a href="students.html" style="margin-left: 20px; text-decoration: none; color: #4A5568;">Ученикам</a>
+        </nav>
+
+        <!-- Кнопка Бургера для телефонов -->
+        <div class="burger-menu" onclick="toggleMobileMenu()" style="font-size: 30px; cursor: pointer; display: none;">☰</div>
+    </div>
+
+    <!-- Мобильное меню (по умолчанию скрыто) -->
+    <div id="mobileDropdown" style="display: none; flex-direction: column; background: white; position: absolute; top: 100%; left: 0; width: 100%; box-shadow: 0 4px 6px rgba(0,0,0,0.1); z-index: 999;">
+        <a href="index.html" style="padding: 15px 20px; text-decoration: none; color: #4A5568; border-bottom: 1px solid #E2E8F0;">Главная страница</a>
+        <a href="about.html" style="padding: 15px 20px; text-decoration: none; color: #4A5568; border-bottom: 1px solid #E2E8F0;">Сведения об организации</a>
+        <a href="safety.html" style="padding: 15px 20px; text-decoration: none; color: #4A5568; border-bottom: 1px solid #E2E8F0;">Безопасность в школе</a>
+        <a href="parents.html" style="padding: 15px 20px; text-decoration: none; color: #4A5568; border-bottom: 1px solid #E2E8F0;">Родителям</a>
+        <a href="students.html" style="padding: 15px 20px; text-decoration: none; color: #4A5568; border-bottom: 1px solid #E2E8F0;">Ученикам</a>
+        <a href="teachers.html" style="padding: 15px 20px; text-decoration: none; color: #4A5568;">Педагогам</a>
+    </div>
+</header>
+
     <header>
          <div class="logo-block">
             <img src="герб.png" alt="Логотип школы" style="width: 50px; height: 50px; object-fit: contain; flex-shrink: 0;">
@@ -138,21 +170,25 @@
                 <h4>Контакты</h4>
                 <p style="font-weight: 600; color: #1A202C; margin-bottom: 6px;">МБОУ СОШ с. Старобаширово</p>
                 <p>Республика Башкортостан, Чекмагушевский р-н, с. Старобаширово, ул. Центральная</p>
-                <p style="margin-top: 10px;">📞 +7 (34796) XX-X-XX</p>
-                <p>✉️ starobash_school@mail.ru</p>
+                <p style="margin-top: 10px;"> +7 (34796) XX-X-XX</p>
+                <p> starobash_school@mail.ru</p>
             </div>
             <div class="footer-col">
                 <h4>Разделы сайта</h4>
                 <ul>
-                    <li><a href="index.html">• Главная страница</a></li>
-                    <li><a href="about.html">• Сведения об организации</a></li>
-                    <li><a href="safety.html">• Безопасность в школе</a></li>
+                    <li><a href="index.html">Главная страница</a></li>
+                    <li><a href="about.html"> Сведения об организации</a></li>
+                    <li><a href="safety.html">Безопасность в школе</a></li>
+                    <li><a href="parents.html">Родителям</a></li>
+                    <li><a href="students.html">Ученикам</a></li>
+                    <li><a href="teachers.html">Педагогам</a></li>
+
                 </ul>
             </div>
             <div class="footer-col">
                 <h4>Социальные сети</h4>
                 <p>Следите за нашими новостями и важными объявлениями в официальном сообществе:</p>
-                <a href="https://vk.com" class="social-box" target="_blank">💻 Наша группа ВКонтакте</a>
+                <a href="https://vk.com" class="social-box" target="_blank">Наша группа ВКонтакте</a>
             </div>
         </div>
         <div class="footer-bottom">© 2026 Официальный сайт МБОУ СОШ с. Старобаширово</div>
@@ -164,5 +200,16 @@
     function closeM() { modal.style.display = 'none'; }
     window.onclick = function(e) { if(e.target == modal) modal.style.display = 'none'; }
 </script>
+<script>
+function toggleMobileMenu() {
+    const menu = document.getElementById('mobileDropdown');
+    if (menu.style.display === 'flex') {
+        menu.style.display = 'none';
+    } else {
+        menu.style.display = 'flex';
+    }
+}
+</script>
+
 </body>
 </html>
