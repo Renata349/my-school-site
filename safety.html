@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Безопасность — МБОУ СОШ им. Г. Латыпова</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #F5F5F5; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 24px; }
+        header { background-color: #139E5D; color: white; border-radius: 14px; padding: 16px 28px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 32px; }
+        .logo-block { display: flex; align-items: center; gap: 16px; }
+        .logo-circle { width: 48px; height: 48px; background-color: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; color: #139E5D; font-size: 22px; flex-shrink: 0; }
+        nav { display: flex; gap: 8px; }
+        nav a { color: white; text-decoration: none; font-size: 14px; font-weight: 600; padding: 8px 16px; border-radius: 8px; }
+        nav a:hover { background-color: rgba(255,255,255,0.15); }
+        nav a.active { background-color: rgba(255,255,255,0.25); }
+        
+        .section { background-color: white; border-radius: 16px; padding: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border: 1px solid #EAEAEA; }
+        .section-title { text-align: center; font-size: 24px; font-weight: 700; margin-bottom: 16px; }
+        
+        /* Круглые медиа-блоки как на скриншоте безопасности */
+        /* Общие настройки для элементов внутри медиа-блока */
+.media-block {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Обертка для картинок, чтобы контролировать их размер */
+.img-wrapper {
+    width: 200px;         /* Задайте нужную ширину круга/квадрата */
+    height: 200px;        /* Задайте нужную высоту */
+    overflow: hidden;     /* Скрывает всё, что выходит за рамки блока */
+    margin-bottom: 8px;   /* Отступ до текста */
+    background-color: #E2E8F0; /* Серый фон, пока картинка грузится */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Делаем блок круглым, если у него есть класс circle-img */
+.circle-img .img-wrapper {
+    border-radius: 50%;   /* Превращает квадрат в идеальный круг */
+}
+
+/* Настройки самой картинки внутри блока */
+.img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    /* Картинка пропорционально заполняет весь блок */
+}
+
+        
+        footer { background-color: #FFFFFF; color: #333; border-top: 1px solid #E2E8F0; padding: 40px 32px 24px 32px; margin-top: 64px; border-radius: 16px; box-shadow: 0 -2px 10px rgba(0,0,0,0.02); }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 40px; }
+        .footer-col h4 { margin-bottom: 20px; color: #139E5D; font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+        .footer-col p, .footer-col ul li a { font-size: 14px; color: #4A5568; text-decoration: none; line-height: 1.6; }
+        .footer-col ul { list-style: none; }
+        .footer-col ul li { margin-bottom: 10px; }
+        .footer-col ul li a:hover { color: #139E5D; text-decoration: underline; }
+        .social-box { display: inline-flex; align-items: center; background-color: #4A90E2; color: white; padding: 10px 20px; border-radius: 50px; font-size: 14px; font-weight: 600; text-decoration: none; margin-top: 12px; transition: background 0.2s; }
+        .social-box:hover { background-color: #357ABD; }
+        .footer-bottom { text-align: center; padding-top: 24px; margin-top: 32px; border-top: 1px solid #EDF2F7; font-size: 13px; color: #718096; font-weight: 500; }
+        /* Сетка кнопок */
+        .btn-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-top: 32px; }
+        .interactive-btn { background-color: #FFF; border: 2px solid #139E5D; color: #139E5D; padding: 16px; border-radius: 12px; font-weight: 700; cursor: pointer; transition: all 0.2s ease; font-size: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .interactive-btn:hover { background-color: #139E5D; color: white; }
+        
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; padding: 20px; z-index: 100; }
+        .modal-content { background: white; padding: 28px; border-radius: 16px; max-width: 450px; width: 100%; position: relative; }
+        .close { position: absolute; top: 12px; right: 16px; font-size: 24px; cursor: pointer; }
+        @media (max-width: 768px) { nav { display: none; } .btn-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+         <div class="logo-block">
+            <img src="герб.png" alt="Логотип школы" style="width: 50px; height: 50px; object-fit: contain; flex-shrink: 0;">
+            <div class="logo-text">МБОУ СОШ имени Героя Советского Союза Габдрахмана Хакимовича Латыпова с. Старобаширово </div>
+        </div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="about.html">Сведения об ОО</a>
+            <a href="safety.html" class="active">Безопасность</a>
+            <a href="parents.html">Родителям</a>
+            <a href="students.html">Ученикам</a>
+            <a href="teachers.html">Педагогам</a>
+        </nav>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title">Безопасность в школе</h2>
+        <p style="text-align: center; color: #666; max-width: 750px; margin: 0 auto; line-height: 1.5;">В школе ведется круглосуточное видеонаблюдение, работает строгий контролируемый пропускной режим сотрудников и посетителей, регулярно проводятся учебные тренировки.</p>
+        
+        <div class="media-block">
+    <!-- Блок Камеры наблюдения -->
+    <div class="media-item">
+        <div class="img-wrapper">
+            <img src="учеб.эвакуация.jpg" alt="">
+        </div>
+      
+    </div>
+
+    <!-- Блок Пост Охраны -->
+    <div class="media-item circle-img">
+        <div class="img-wrapper">
+            <img src="турникет.webp" alt="">
+        </div>
+        
+    </div>
+</div>
+
+
+        <div class="btn-grid">
+            <button class="interactive-btn" onclick="showM('Информационная безопасность', 'На всех школьных компьютерах подключена автоматическая контент-фильтрация. Регулярно проводятся уроки безопасного интернета и цифровой гигиены.')">Информационная безопасность</button>
+            <button class="interactive-btn" onclick="showM('Пожарная безопасность', 'Здание полностью оснащено автоматической пожарной сигнализацией и речевым оповещением. Все выходы свободны.')">Пожарная безопасность</button>
+            <button class="interactive-btn" onclick="showM('Дорожная безопасность', 'Разработан и утвержден паспорт дорожной безопасности «Дом-Школа-Дом». Еженедельно проводятся профилактические минутки ПДД.')">Дорожная безопасность</button>
+            <button class="interactive-btn" onclick="showM('Антитеррор', 'Допуск в здание посторонних лиц осуществляется строго по документам, удостоверяющим личность. Периметр полностью огражден.')">Антитеррор</button>
+            <button class="interactive-btn" onclick="showM('Службы спасения', 'Единый телефон спасения: 112.<br>Пожарная служба: 101.<br>Полиция: 102.<br>Скорая медицинская помощь: 103.')">Телефоны служб спасения</button>
+        </div>
+    </section>
+
+    <div id="infoModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeM()">&times;</span>
+            <h3 id="mTitle" style="color: #139E5D; margin-bottom: 12px;"></h3>
+            <p id="mBody" style="color: #444; line-height: 1.5;"></p>
+        </div>
+    </div>
+</div>
+ <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <p style="font-weight: 600; color: #1A202C; margin-bottom: 6px;">МБОУ СОШ с. Старобаширово</p>
+                <p>Республика Башкортостан, Чекмагушевский р-н, с. Старобаширово, ул. Центральная</p>
+                <p style="margin-top: 10px;">📞 +7 (34796) XX-X-XX</p>
+                <p>✉️ starobash_school@mail.ru</p>
+            </div>
+            <div class="footer-col">
+                <h4>Разделы сайта</h4>
+                <ul>
+                    <li><a href="index.html">• Главная страница</a></li>
+                    <li><a href="about.html">• Сведения об организации</a></li>
+                    <li><a href="safety.html">• Безопасность в школе</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Социальные сети</h4>
+                <p>Следите за нашими новостями и важными объявлениями в официальном сообществе:</p>
+                <a href="https://vk.com" class="social-box" target="_blank">💻 Наша группа ВКонтакте</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Официальный сайт МБОУ СОШ с. Старобаширово</div>
+    </footer>
+
+<script>
+    const modal = document.getElementById('infoModal');
+    function showM(t, b) { document.getElementById('mTitle').innerHTML = t; document.getElementById('mBody').innerHTML = b; modal.style.display = 'flex'; }
+    function closeM() { modal.style.display = 'none'; }
+    window.onclick = function(e) { if(e.target == modal) modal.style.display = 'none'; }
+</script>
+</body>
+</html>

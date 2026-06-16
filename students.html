@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ученикам — МБОУ СОШ им. Г. Латыпова</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+        body { background-color: #F5F5F5; color: #333; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        header { background-color: #139E5D; color: white; border-radius: 15px; padding: 15px 25px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 25px; }
+        .logo-block { display: flex; align-items: center; gap: 15px; }
+        .logo-circle { width: 50px; height: 50px; background-color: #FFF; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #139E5D; font-size: 20px; flex-shrink: 0; }
+        nav { display: flex; gap: 10px; }
+        nav a { color: white; text-decoration: none; font-size: 14px; padding: 8px 14px; border-radius: 8px; }
+        nav a:hover { background-color: rgba(255,255,255,0.25); }
+        nav a.active { background-color: rgba(255,255,255,0.35); font-weight: bold; }
+
+        .section { background-color: white; border-radius: 15px; padding: 25px; margin-bottom: 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .section-title { text-align: center; font-size: 22px; margin-bottom: 20px; font-weight: bold; }
+        
+        /* Сетка кнопок 2х2 как на десктопе в Figma */
+        .students-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px; }
+        .student-card-btn { background-color: #FFF; border: 2px solid #139E5D; color: #139E5D; border-radius: 12px; padding: 25px; font-weight: bold; font-size: 16px; cursor: pointer; text-align: center; transition: all 0.3s; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .student-card-btn:hover { background-color: #139E5D; color: white; transform: translateY(-2px); }
+        
+        /* Интерактивный слайдер мероприятий */
+        .slider-container { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 30px 0; }
+        .slider-window { position: relative; max-width: 500px; width: 100%; height: 240px; background-color: #E2E8F0; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        .slide { width: 100%; height: 100%; display: none; align-items: center; justify-content: center; color: white; font-weight: bold; font-size: 18px; text-align: center; background-size: cover; background-position: center; background-blend-mode: overlay; background-color: rgba(0,0,0,0.35); padding: 20px; }
+        .slide.active { display: flex; }
+        .arrow-btn { background: white; border: 1px solid #DDD; width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; cursor: pointer; user-select: none; }
+
+        footer { background-color: #FFFFFF; color: #333; border-top: 1px solid #E2E8F0; padding: 35px 25px 20px 25px; margin-top: 40px; border-radius: 15px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; }
+        .footer-col h4 { margin-bottom: 15px; color: #139E5D; font-size: 16px; }
+        .footer-col p, .footer-col ul li a { font-size: 14px; color: #4A5568; text-decoration: none; }
+        .footer-bottom { text-align: center; padding-top: 20px; margin-top: 20px; border-top: 1px solid #EDF2F7; font-size: 12px; color: #718096; }
+
+        @media (max-width: 768px) { .students-grid { grid-template-columns: 1fr; } nav { display: none; } }
+    </style>
+</head>
+<body>
+<div class="container">
+    <header>
+         <div class="logo-block">
+            <img src="герб.png" alt="Логотип школы" style="width: 50px; height: 50px; object-fit: contain; flex-shrink: 0;">
+            <div class="logo-text">МБОУ СОШ имени Героя Советского Союза Габдрахмана Хакимовича Латыпова с. Старобаширово </div>
+        </div>
+        <nav>
+            <a href="index.html">Главная</a>
+            <a href="about.html">Сведения об ОО</a>
+            <a href="safety.html">Безопасность</a>
+            <a href="parents.html">Родителям</a>
+            <a href="students.html" class="active">Ученикам</a>
+            <a href="teachers.html">Педагогам</a>
+        </nav>
+    </header>
+
+    <section class="section">
+        <h2 class="section-title">Всё для твоей учёбы и развития</h2>
+        <p style="text-align: center; color: #666; max-width: 750px; margin: 0 auto;">Кликни на интересующий тебя раздел, чтобы быстро узнать расписание, открыть олимпиадные задания или выбрать кружок:</p>
+        
+        <div class="students-grid">
+            <button class="student-card-btn" onclick="alert('Введите пароль')">Электронный дневник</button>
+            <button class="student-card-btn" onclick="alert('Движение первыыыых!!!!!!!!!!!!!')">Движение первых</button>
+            
+
+        </div>
+    </section>
+
+    <!-- СЛАЙДЕР МЕРОПРИЯТИЙ ДЛЯ УЧЕНИКОВ -->
+    <section class="section">
+    <h2 class="section-title">Яркие моменты нашей школы</h2>
+    <div class="slider-container">
+        <div class="arrow-btn" onclick="nextSlide(-1)">❮</div>
+        <div class="slider-window">
+            <!-- Первый слайд: ваше скачанное фото -->
+            <div class="slide active" style="background-image: url('движение\ первых.jpg');"></div>
+            
+            <!-- Второй слайд: имя второго скачанного фото -->
+            <div class="slide" style="background-image: url('последний\ звонок.jpg');"></div>
+            
+            <!-- Третий слайд: имя третьего скачанного фото -->
+            <div class="slide" style="background-image: url('мероприятия.jpg');"></div>
+        </div>
+        <div class="arrow-btn" onclick="nextSlide(1)">❯</div>
+    </div>
+</section>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Контакты</h4>
+                <p style="font-weight: 600; color: #1A202C; margin-bottom: 6px;">МБОУ СОШ с. Старобаширово</p>
+                <p>Республика Башкортостан, Чекмагушевский р-н, с. Старобаширово, ул. Центральная</p>
+                <p style="margin-top: 10px;">📞 +7 (34796) XX-X-XX</p>
+                <p>✉️ starobash_school@mail.ru</p>
+            </div>
+            <div class="footer-col">
+                <h4>Разделы сайта</h4>
+                <ul>
+                    <li><a href="index.html">• Главная страница</a></li>
+                    <li><a href="about.html">• Сведения об организации</a></li>
+                    <li><a href="safety.html">• Безопасность в школе</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Социальные сети</h4>
+                <p>Следите за нашими новостями и важными объявлениями в официальном сообществе:</p>
+                <a href="https://vk.com" class="social-box" target="_blank">💻 Наша группа ВКонтакте</a>
+            </div>
+        </div>
+        <div class="footer-bottom">© 2026 Официальный сайт МБОУ СОШ с. Старобаширово</div>
+    </footer>
+</div>
+
+<script>
+    let slideIdx = 0;
+    const slides = document.querySelectorAll('.slide');
+    function nextSlide(dir) {
+        slides[slideIdx].classList.remove('active');
+        slideIdx = (slideIdx + dir + slides.length) % slides.length;
+        slides[slideIdx].classList.add('active');
+    }
+</script>
+</body>
+</html>
